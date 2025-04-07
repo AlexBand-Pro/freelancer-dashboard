@@ -31,7 +31,7 @@ function EmailLog() {
     !loggedIn ? <main className="login-main">
       <div className="go-back-link-wrapper"><Link className="go-back-log-in-link" relative="path" to="..">Go back</Link></div>
       <h1 className="log-in-title">{hasAccount ? "Log in" : "Create Account"}</h1>
-      {error ? <p>{error}</p> : null}
+      {error ? <p className="red-error">{error}</p> : null}
       <form>
         <input ref={emailRef} className="log-in-input" name="email" id="email" type="email" placeholder="Email" />
         <input ref={passwordRef} className="log-in-input" name="password" id="password" type="password" placeholder="First password" />
