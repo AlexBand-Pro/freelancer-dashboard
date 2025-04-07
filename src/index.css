@@ -103,7 +103,7 @@ main {
   display: flex;
   flex-direction: column;
   gap: 2em;
-  padding-top: 5em;
+  padding-top: 7em;
   text-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
   align-items: flex-start;
 }
