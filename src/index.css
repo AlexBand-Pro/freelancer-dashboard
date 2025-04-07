@@ -516,6 +516,12 @@ form>button {
   font-weight: 900;
 }
 
+@media (max-width: 850px) {
+  .profile-ul {
+    margin: auto 0 3.5em 0;
+  }
+}
+
 @media (min-width: 425px) {
   .stats {
     flex-direction: row;
