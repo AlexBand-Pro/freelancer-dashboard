@@ -14,7 +14,6 @@ function Login() {
 
   const location = useLocation()
   const to = location.state?.to || "/dashboard"
-  console.log(location)
   return (
     !loggedIn ? <main className="login-main">
       <h1 className="log-in-title">Choose your log in option</h1>
