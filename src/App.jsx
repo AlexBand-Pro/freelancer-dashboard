@@ -10,6 +10,7 @@ import Clients from "./page-components/Clients"
 import Gigs from "./page-components/Gigs"
 import Payments from "./page-components/Payments"
 import AuthRequired from "./components/Authrequired"
+import NotFound from "./pages/NotFound"
 import '../api'
 
 function App() {
@@ -30,7 +31,7 @@ function App() {
             <Route path="profile" element={<Profile />} />
             <Route path="explore" element={<Explore />} />
           </Route>
-
+          <Route path="*" element={<NotFound />} />
         </Route>
       </Routes>
     </BrowserRouter>

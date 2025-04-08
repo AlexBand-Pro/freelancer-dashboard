@@ -128,7 +128,8 @@ main {
 .profile-main,
 .profile-text-wrapper,
 .explore-main,
-.gigs-container {
+.gigs-container,
+.not-found-main {
   display: flex;
   flex-direction: column;
 }
@@ -157,6 +158,11 @@ main {
 
 .explore-main, .gigs-container {
   gap: 2em;
+}
+
+.not-found-main {
+  gap: 2em;
+  align-items: center;
 }
 
 /* Sidebar */
@@ -577,6 +583,26 @@ form>button {
   border: 1px solid whitesmoke;
 }
 
+.not-found-link-dark {
+  background-color: #14213D;
+  color: whitesmoke;
+  border: 1px solid whitesmoke;
+}
+
+.not-found-link-light {
+  background-color: whitesmoke;
+  color: #14213D;
+  border: 1px solid #14213D;
+}
+
+
+/* Not Found Page */
+
+.not-found-link {
+  padding: 0.5em 1em;
+  border-radius: 0.2em;
+}
+
 @media (max-width: 850px) {
   .profile-ul {
     margin: auto 0 3.5em 0;
@@ -704,6 +730,15 @@ form>button {
 
   .go-back-link-wrapper {
     margin-bottom: -0.8em;
+  }
+
+  .not-found-main {
+    padding-top: 4em;
+    gap: 3em;
+  }
+
+  .not-found-main > h1 {
+    font-size: 3rem;
   }
 
 }
