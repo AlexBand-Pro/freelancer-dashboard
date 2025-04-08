@@ -16,6 +16,30 @@ function Layout() {
     userEmail: "example@gmail.com"
   })
 
+  useEffect(() => {
+    const savedTheme = localStorage.getItem("darkMode");
+    if (savedTheme !== null) {
+      setDarkMode(savedTheme === "true");
+    }
+  }, []);
+  
+  useEffect(() => {
+    localStorage.setItem("darkMode", darkMode);
+  }, [darkMode]);
+
+  useEffect(() => {
+    const handleResize = () => {
+      if (window.innerWidth >= 1300) {
+        setMenuOpen(false);
+      }
+    };
+
+    handleResize();
+    window.addEventListener("resize", handleResize);
+
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
   const toggleMenu = () => {
     setMenuOpen(prevMenuOpen => !prevMenuOpen)
   }
