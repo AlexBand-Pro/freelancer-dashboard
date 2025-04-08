@@ -2,7 +2,8 @@ import { useSearchParams } from "react-router-dom"
 import { useState, useContext } from "react"
 import { gigs } from '../../api'
 import Gig from "../components/Gig"
-import { MenuContext } from "../components/Layout";
+import { MenuContext } from "../components/Layout"
+import clsx from 'clsx'
 
 function Explore() {
   const { darkMode } = useContext(MenuContext)
@@ -10,7 +11,7 @@ function Explore() {
   const [searchParams, setSearchParams] = useSearchParams()
   const typeFilter = searchParams.get("type")
 
-  const uncompletedGigs = gigs.filter(gig => !gig.completedBy);
+  const uncompletedGigs = gigs.filter(gig => !gig.completedBy)
   const filteredGigs = uncompletedGigs.filter(gig => !typeFilter || typeFilter === gig.status)
 
   const [applied, setApplied] = useState({})
@@ -38,21 +39,14 @@ function Explore() {
     return <Gig key={gig.id} gig={gig} applyForGig={applyForGig} applied={applied} darkMode={darkMode} />
   })
 
-  const mainDarkStyles = {
-    backgroundColor: "#161616",
-    color: "whitesmoke"
-  }
-
-  const clearFiltersDarkStyles = {
-    color: "whitesmoke"
-  }
-
-  const premiumFilterDarkStyles = {
-    border: "1px solid whitesmoke"
-  }
+  const filterClass = clsx(
+    'gig-filter',
+    typeFilter === 'premium' && typeFilter,
+    darkMode && 'premium-dark-border'
+  )
 
   return (
-    <main style={darkMode ? mainDarkStyles : null} className="explore-main">
+    <main className={`explore-main ${darkMode ? "main-dark" : ""}`}>
       <h1>Find your gig</h1>
 
       <div className="filters">
@@ -61,18 +55,18 @@ function Explore() {
           className={`gig-filter ${typeFilter === "standard" ? typeFilter : ""}`}>Standard
         </button>
         <button
-          style={darkMode ? premiumFilterDarkStyles : null}
           onClick={() => handleFilterChange("type", "premium")}
-          className={`gig-filter ${typeFilter === "premium" ? typeFilter : ""}`}>Premium
+          className={filterClass}>Premium
         </button>
         <button
-          style={darkMode ? clearFiltersDarkStyles : null}
           onClick={() => handleFilterChange("type", null)}
-          className="clear-filter-btn">Clear filters
+          className={`clear-filter-btn ${darkMode ? "dark-text-white" : null}`}>Clear filters
         </button>
       </div>
 
-      {gigList}
+      <div className="gigs-container">
+        {gigList}
+      </div>
     </main>
   )
 }

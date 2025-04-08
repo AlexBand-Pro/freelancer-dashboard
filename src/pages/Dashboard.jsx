@@ -15,35 +15,26 @@ function Dashboard() {
     return total + gig.price
   }, 0)
 
-  const dashBoardMainDarkStyles = {
-    backgroundColor: "#161616",
-    color: "whitesmoke"
-  }
-
-  const statsDarkStyles = {
-    backgroundColor: "#14213D"
-  }
-
   return (
-    <main style={darkMode ? dashBoardMainDarkStyles : null} className="dashboard-main">
+    <main className={`dashboard-main ${darkMode ? "main-dark" : ""}`}>
       <h1>Dashboard</h1>
       <div className="stats">
-        <div style={darkMode ? statsDarkStyles : null} className="stats-box">
+        <div className={`stats-box ${darkMode ? "dark" : ""}`}>
           <p className="stat-title">Earnings</p>
           <p className="stat-value">${userEarnings}</p>
         </div>
-        <div style={darkMode ? statsDarkStyles : null} className="stats-box">
+        <div className={`stats-box ${darkMode ? "dark" : ""}`}>
           <p className="stat-title">Clients</p>
           <p className="stat-value">{userClients.length}</p>
         </div>
-        <div style={darkMode ? statsDarkStyles : null} className="stats-box">
+        <div className={`stats-box ${darkMode ? "dark" : ""}`}>
           <p className="stat-title">Gigs</p>
           <p className="stat-value">{userGigs.length}</p>
         </div>
       </div>
 
       <div className="main-content-dashboard">
-        <div style={darkMode ? statsDarkStyles : null} className="dashboard-nav">
+        <div className={`dashboard-nav ${darkMode ? "dark" : ""}`}>
           <NavLink className="dashboard-nav-link" style={({ isActive }) => isActive ? activeStyles : null} end to="/dashboard">Clients</NavLink>
           <NavLink className="dashboard-nav-link" style={({ isActive }) => isActive ? activeStyles : null} to="gigs">Gigs</NavLink>
           <NavLink className="dashboard-nav-link" style={({ isActive }) => isActive ? activeStyles : null} to="payments">Payments</NavLink>

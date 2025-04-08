@@ -4,18 +4,9 @@ import { useContext } from "react"
 function Profile () {
   const { userInfo, darkMode } = useContext(MenuContext)
 
-  const mainDarkStyles = {
-    backgroundColor: "#161616",
-    color: "whitesmoke"
-  }
-
-  const profileImgDarkStyles = {
-    border: "1px solid whitesmoke"
-  }
-
   return (
-    <main style={darkMode ? mainDarkStyles : null} className="profile-main">
-      <img style={darkMode ? profileImgDarkStyles : null} className="user-profile-image" src={userInfo.userImg} />
+    <main className={`profile-main ${darkMode ? "main-dark" : ""}`}>
+      <img className={`user-profile-image ${darkMode ? 'premium-dark-border' : ""}`} src={userInfo.userImg} />
       <div className="profile-text-wrapper">
         <p className="profile-full-name">
           <span className="bold">Name:</span> {userInfo.userName}

@@ -41,8 +41,8 @@ function Layout() {
   }, [])
 
   useEffect(() => {
-    determineLogState(setLoggedIn, setUserInfo)
-  }, [loggedIn])
+    determineLogState(setLoggedIn, setUserInfo, darkMode)
+  }, [loggedIn, darkMode])
 
   return (
     <MenuContext.Provider value={{ menuOpen, setMenuOpen, toggleMenu, userGigs, userClients, loggedIn, setLoggedIn, userInfo, darkMode, setDarkMode }}>

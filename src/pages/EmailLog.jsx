@@ -14,16 +14,6 @@ function EmailLog() {
   const [reqStatus, setReqStatus] = useState("idle")
   const { loggedIn, setLoggedIn, darkMode } = useContext(MenuContext)
 
-  const mainDarkStyles = {
-    backgroundColor: "#161616",
-    color: "whitesmoke"
-  }
-
-  const inputDarkStyles = {
-    backgroundColor: "#14213D",
-    color: "whitesmoke"
-  }
-
   const createAccount = (e) => {
     e.preventDefault()
     authCreateAccountWithEmail(emailRef.current.value, passwordRef.current.value, setLoggedIn, setReqStatus, setError)
@@ -38,16 +28,16 @@ function EmailLog() {
     passwordRef.current.value = ""
   }
   return (
-    !loggedIn ? <main style={darkMode ? mainDarkStyles : null} className="login-main">
+    !loggedIn ? <main className={`login-main ${darkMode ? "main-dark" : ""}`}>
       <div className="go-back-link-wrapper"><Link className="go-back-log-in-link" relative="path" to="..">Go back</Link></div>
       <h1 className="log-in-title">{hasAccount ? "Log in" : "Create Account"}</h1>
       {error ? <p className="red-error">{error}</p> : null}
       <form>
-        <input style={darkMode ? inputDarkStyles : null} ref={emailRef} className="log-in-input" name="email" id="email" type="email" placeholder="Email" />
-        <input style={darkMode ? inputDarkStyles : null} ref={passwordRef} className="log-in-input" name="password" id="password" type="password" placeholder="First password" />
+        <input className={`log-in-input ${darkMode ? "dark" : ""}`} ref={emailRef} name="email" id="email" type="email" placeholder="Email" />
+        <input className={`log-in-input ${darkMode ? "dark" : ""}`} ref={passwordRef} name="password" id="password" type="password" placeholder="First password" />
         {hasAccount
-          ? <button style={darkMode ? inputDarkStyles : null} disabled={reqStatus === "submitting"} onClick={logIn}>Log in</button>
-          : <button style={darkMode ? inputDarkStyles : null} disabled={reqStatus === "submitting"} onClick={createAccount}>Create Account</button>}
+          ? <button className={`log-in-input ${darkMode ? "dark" : ""}`} disabled={reqStatus === "submitting"} onClick={logIn}>Log in</button>
+          : <button className={`log-in-input ${darkMode ? "dark" : ""}`} disabled={reqStatus === "submitting"} onClick={createAccount}>Create Account</button>}
       </form>
     </main> : <Navigate to="/dashboard" />
   )

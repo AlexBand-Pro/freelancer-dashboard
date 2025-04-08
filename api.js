@@ -41,11 +41,11 @@ export const user = usersQuery.docs.map((doc) => {
   return users.userName
 });
 
-export function determineLogState (setLoggedIn, setUserInfo) {
+export function determineLogState (setLoggedIn, setUserInfo, darkMode) {
   onAuthStateChanged(auth, (user) => {
       if (user) {
           setLoggedIn(true)
-          showProfilePicture(user, setUserInfo)
+          showProfilePicture(user, setUserInfo, darkMode)
       } else {
           setLoggedIn(false)
       }
@@ -55,7 +55,7 @@ export function determineLogState (setLoggedIn, setUserInfo) {
 export function authCreateAccountWithEmail(email, password, setLoggedIn, setReqStatus, setError) {
   setReqStatus("submitting")
   createUserWithEmailAndPassword(auth, email, password)
-    .then((userCredential) => {
+    .then(() => {
       setLoggedIn(true)
       setError(null)
     })
@@ -72,7 +72,7 @@ export function authCreateAccountWithEmail(email, password, setLoggedIn, setReqS
 export function authSignInWithEmail(email, password, setLoggedIn, setReqStatus, setError) {
   setReqStatus("submitting")
   signInWithEmailAndPassword(auth, email, password)
-    .then((userCredential) => {
+    .then(() => {
       setLoggedIn(true)
       setError(null)
     })
@@ -102,13 +102,13 @@ export function authSignInWithGoogle() {
     })
 }
 
-function showProfilePicture(user, setUserInfo) {
+function showProfilePicture(user, setUserInfo, darkMode) {
   const photoURL = user.photoURL
   const displayName = user.displayName?.split(" ")[0] || "Guest"
   const email = user.email
 
   setUserInfo({
-    userImg: photoURL || "/src/assets/user.png",
+    userImg: photoURL || (darkMode ? "/src/assets/user-dark.png" : "/src/assets/user.png"),
     userName: displayName,
     userEmail: email
   })
