@@ -1,13 +1,21 @@
 import { MenuContext } from "../components/Layout"
 import { useContext } from "react"
-import userIcon from "../assets/user.png"
 
 function Profile () {
-  const { userPhotoURL, userInfo } = useContext(MenuContext)
+  const { userInfo, darkMode } = useContext(MenuContext)
+
+  const mainDarkStyles = {
+    backgroundColor: "#161616",
+    color: "whitesmoke"
+  }
+
+  const profileImgDarkStyles = {
+    border: "1px solid whitesmoke"
+  }
 
   return (
-    <main className="profile-main">
-      <img className="user-profile-image" src={userPhotoURL || userIcon} />
+    <main style={darkMode ? mainDarkStyles : null} className="profile-main">
+      <img style={darkMode ? profileImgDarkStyles : null} className="user-profile-image" src={userInfo.userImg} />
       <div className="profile-text-wrapper">
         <p className="profile-full-name">
           <span className="bold">Name:</span> {userInfo.userName}

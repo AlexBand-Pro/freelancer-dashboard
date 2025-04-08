@@ -2,3 +2,5 @@ Photo by <a href="https://unsplash.com/@synkevych?utm_content=creditCopyText&utm
       
 
 <a href="https://www.flaticon.com/free-icons/email" title="email icons">Email icons created by Freepik - Flaticon</a>
+
+<a href="https://www.flaticon.com/free-icons/email" title="email icons">Email icons created by kornkun - Flaticon</a>

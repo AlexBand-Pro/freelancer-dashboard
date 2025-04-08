@@ -9,8 +9,9 @@ export const MenuContext = createContext()
 function Layout() {
   const [menuOpen, setMenuOpen] = useState(false)
   const [loggedIn, setLoggedIn] = useState(false)
-  const [userPhotoURL, setUserPhotoURL] = useState("")
+  const [darkMode, setDarkMode] = useState(false)
   const [userInfo, setUserInfo] = useState({
+    userImg: "/src/assets/user.png",
     userName: "Guest",
     userEmail: "example@gmail.com"
   })
@@ -40,11 +41,11 @@ function Layout() {
   }, [])
 
   useEffect(() => {
-    determineLogState(setLoggedIn, setUserPhotoURL, setUserInfo)
+    determineLogState(setLoggedIn, setUserInfo)
   }, [loggedIn])
 
   return (
-    <MenuContext.Provider value={{ menuOpen, setMenuOpen, toggleMenu, userGigs, userClients, loggedIn, setLoggedIn, userPhotoURL, userInfo }}>
+    <MenuContext.Provider value={{ menuOpen, setMenuOpen, toggleMenu, userGigs, userClients, loggedIn, setLoggedIn, userInfo, darkMode, setDarkMode }}>
       <div id="shadow" className="shadow" style={{ display: menuOpen ? "block" : "none" }}></div>
       <Header />
       <Outlet />

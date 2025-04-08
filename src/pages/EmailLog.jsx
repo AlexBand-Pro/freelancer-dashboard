@@ -12,7 +12,17 @@ function EmailLog() {
 
   const [error, setError] = useState(null)
   const [reqStatus, setReqStatus] = useState("idle")
-  const { loggedIn, setLoggedIn } = useContext(MenuContext)
+  const { loggedIn, setLoggedIn, darkMode } = useContext(MenuContext)
+
+  const mainDarkStyles = {
+    backgroundColor: "#161616",
+    color: "whitesmoke"
+  }
+
+  const inputDarkStyles = {
+    backgroundColor: "#14213D",
+    color: "whitesmoke"
+  }
 
   const createAccount = (e) => {
     e.preventDefault()
@@ -28,16 +38,16 @@ function EmailLog() {
     passwordRef.current.value = ""
   }
   return (
-    !loggedIn ? <main className="login-main">
+    !loggedIn ? <main style={darkMode ? mainDarkStyles : null} className="login-main">
       <div className="go-back-link-wrapper"><Link className="go-back-log-in-link" relative="path" to="..">Go back</Link></div>
       <h1 className="log-in-title">{hasAccount ? "Log in" : "Create Account"}</h1>
       {error ? <p className="red-error">{error}</p> : null}
       <form>
-        <input ref={emailRef} className="log-in-input" name="email" id="email" type="email" placeholder="Email" />
-        <input ref={passwordRef} className="log-in-input" name="password" id="password" type="password" placeholder="First password" />
+        <input style={darkMode ? inputDarkStyles : null} ref={emailRef} className="log-in-input" name="email" id="email" type="email" placeholder="Email" />
+        <input style={darkMode ? inputDarkStyles : null} ref={passwordRef} className="log-in-input" name="password" id="password" type="password" placeholder="First password" />
         {hasAccount
-          ? <button disabled={reqStatus === "submitting"} onClick={logIn}>Log in</button>
-          : <button disabled={reqStatus === "submitting"} onClick={createAccount}>Create Account</button>}
+          ? <button style={darkMode ? inputDarkStyles : null} disabled={reqStatus === "submitting"} onClick={logIn}>Log in</button>
+          : <button style={darkMode ? inputDarkStyles : null} disabled={reqStatus === "submitting"} onClick={createAccount}>Create Account</button>}
       </form>
     </main> : <Navigate to="/dashboard" />
   )

@@ -1,9 +1,12 @@
 import { useSearchParams } from "react-router-dom"
-import { useState } from "react"
+import { useState, useContext } from "react"
 import { gigs } from '../../api'
 import Gig from "../components/Gig"
+import { MenuContext } from "../components/Layout";
 
 function Explore() {
+  const { darkMode } = useContext(MenuContext)
+
   const [searchParams, setSearchParams] = useSearchParams()
   const typeFilter = searchParams.get("type")
 
@@ -32,11 +35,24 @@ function Explore() {
   }
 
   const gigList = filteredGigs.map((gig) => {
-    return <Gig key={gig.id} gig={gig} applyForGig={applyForGig} applied={applied} />
+    return <Gig key={gig.id} gig={gig} applyForGig={applyForGig} applied={applied} darkMode={darkMode} />
   })
 
+  const mainDarkStyles = {
+    backgroundColor: "#161616",
+    color: "whitesmoke"
+  }
+
+  const clearFiltersDarkStyles = {
+    color: "whitesmoke"
+  }
+
+  const premiumFilterDarkStyles = {
+    border: "1px solid whitesmoke"
+  }
+
   return (
-    <main className="explore-main">
+    <main style={darkMode ? mainDarkStyles : null} className="explore-main">
       <h1>Find your gig</h1>
 
       <div className="filters">
@@ -45,10 +61,12 @@ function Explore() {
           className={`gig-filter ${typeFilter === "standard" ? typeFilter : ""}`}>Standard
         </button>
         <button
+          style={darkMode ? premiumFilterDarkStyles : null}
           onClick={() => handleFilterChange("type", "premium")}
           className={`gig-filter ${typeFilter === "premium" ? typeFilter : ""}`}>Premium
         </button>
         <button
+          style={darkMode ? clearFiltersDarkStyles : null}
           onClick={() => handleFilterChange("type", null)}
           className="clear-filter-btn">Clear filters
         </button>

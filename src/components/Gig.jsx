@@ -1,14 +1,19 @@
 import userIcon from "../assets/user.png"
 import { clients } from '../../api'
 
-function Gig({ gig, applyForGig, applied }) {
+function Gig({ gig, applyForGig, applied, darkMode }) {
   const client = clients.filter((client) => gig.ownedBy === client.clientId)
   const clientAvatar = client[0].avatarUrl ? client[0].avatarUrl : userIcon
 
   const appliedSetting = applied[gig.id]
 
+  const gigDarkStyles = {
+    backgroundColor: "#14213D",
+    color: "whitesmoke"
+  }
+
   return (
-    <div className="new-gig">
+    <div style={darkMode ? gigDarkStyles : null} className="new-gig">
       <div className="gig-body">
         <div className="client-info">
           <img className="explore-client-img" src={clientAvatar} />

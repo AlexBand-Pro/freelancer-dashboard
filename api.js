@@ -41,11 +41,11 @@ export const user = usersQuery.docs.map((doc) => {
   return users.userName
 });
 
-export function determineLogState (setLoggedIn, setUserPhotoURL, setUserInfo) {
+export function determineLogState (setLoggedIn, setUserInfo) {
   onAuthStateChanged(auth, (user) => {
       if (user) {
           setLoggedIn(true)
-          showProfilePicture(setUserPhotoURL, user, setUserInfo)
+          showProfilePicture(user, setUserInfo)
       } else {
           setLoggedIn(false)
       }
@@ -102,15 +102,14 @@ export function authSignInWithGoogle() {
     })
 }
 
-function showProfilePicture(setUserPhotoURL, user, setUserInfo) {
+function showProfilePicture(user, setUserInfo) {
   const photoURL = user.photoURL
   const displayName = user.displayName?.split(" ")[0] || "Guest"
   const email = user.email
 
   setUserInfo({
+    userImg: photoURL || "/src/assets/user.png",
     userName: displayName,
     userEmail: email
   })
-
-  setUserPhotoURL(photoURL || "/src/assets/user.png")
 }
