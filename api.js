@@ -17,6 +17,71 @@ const db = getFirestore(app)
 const auth = getAuth(app)
 const provider = new GoogleAuthProvider();
 
+const usersQuery = await getDocs(collection(db, "users"))
+export const user = usersQuery.docs.map((doc) => {
+  const users = doc.data()
+  return users.userName
+});
+
+export async function fetchAllGigs() {
+  const gigsQuery = await getDocs(collection(db, "gigs"))
+  return gigsQuery.docs
+    .map((doc) => ({
+      ...doc.data(),
+      id: doc.id
+    }))
+}
+
+export async function fetchAllClients() {
+  const clientsQuery = await getDocs(collection(db, "clients"))
+  return clientsQuery.docs
+    .map((doc) => ({
+      ...doc.data(),
+      id: doc.id
+    }))
+}
+
+export async function fetchUserGigs() {
+  const gigsQuery = await getDocs(collection(db, "gigs"))
+  return gigsQuery.docs
+    .filter( (doc) => doc.data().completedBy === user[0])
+    .map((doc) => ({
+      ...doc.data(),
+      id: doc.id
+    }))
+}
+
+export async function fetchUserClients() {
+  const userGigs = await fetchUserGigs()
+  const clientsQuery = await getDocs(collection(db, "clients"))
+  const filteredClients = []
+
+  for (const doc of clientsQuery.docs) {
+    const client = doc.data()
+    if (userGigs.some(gig => client.clientId === gig.ownedBy)) {
+      filteredClients.push({
+        ...client,
+        id: doc.id
+      })
+    }
+  }
+
+  return filteredClients
+}
+
+// export async function fetchClients() {
+//   const clientsQuery = await getDocs(collection(db, "clients"));
+//   return clientsQuery.docs.map((doc) => ({
+//     ...doc.data(),
+//     id: doc.id
+//   }));
+// }
+
+// export async function fetchUsers() {
+//   const usersQuery = await getDocs(collection(db, "users"));
+//   return usersQuery.docs.map((doc) => doc.data().userName);
+// }
+
 const gigsQuery = await getDocs(collection(db, "gigs"));
 export const gigs = gigsQuery.docs.map((doc) => {
   const gigs = doc.data()
@@ -33,12 +98,6 @@ export const clients = clientsQuery.docs.map((doc) => {
     ...clients,
     id: doc.id
   }
-});
-
-const usersQuery = await getDocs(collection(db, "users"));
-export const user = usersQuery.docs.map((doc) => {
-  const users = doc.data()
-  return users.userName
 });
 
 export function determineLogState (setLoggedIn, setUserInfo, darkMode) {

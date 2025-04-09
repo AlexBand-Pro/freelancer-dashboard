@@ -1,7 +1,6 @@
 import userIcon from "../assets/user.png"
-import { clients } from '../../api'
 
-function Gig({ gig, applyForGig, applied, darkMode }) {
+function Gig({ gig, applyForGig, applied, darkMode, clients }) {
   const client = clients.filter((client) => gig.ownedBy === client.clientId)
   const clientAvatar = client[0].avatarUrl ? client[0].avatarUrl : userIcon
 

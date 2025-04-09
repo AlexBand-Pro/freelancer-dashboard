@@ -603,6 +603,24 @@ form>button {
   border-radius: 0.2em;
 }
 
+/* Spinning wheel */
+
+.spinner {
+  border: 4px solid rgba(0, 0, 0, 0.1);
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  margin: 2rem auto;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
 @media (max-width: 850px) {
   .profile-ul {
     margin: auto 0 3.5em 0;

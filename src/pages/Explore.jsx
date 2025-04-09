@@ -1,12 +1,12 @@
 import { useSearchParams } from "react-router-dom"
 import { useState, useContext } from "react"
-import { gigs } from '../../api'
 import Gig from "../components/Gig"
 import { MenuContext } from "../components/Layout"
 import clsx from 'clsx'
+import Spinner from '../components/Spinner'
 
 function Explore() {
-  const { darkMode } = useContext(MenuContext)
+  const { darkMode, loadingAllGigs, gigs, clients } = useContext(MenuContext)
 
   const [searchParams, setSearchParams] = useSearchParams()
   const typeFilter = searchParams.get("type")
@@ -36,7 +36,7 @@ function Explore() {
   }
 
   const gigList = filteredGigs.map((gig) => {
-    return <Gig key={gig.id} gig={gig} applyForGig={applyForGig} applied={applied} darkMode={darkMode} />
+    return <Gig key={gig.id} gig={gig} applyForGig={applyForGig} applied={applied} darkMode={darkMode} clients={clients} />
   })
 
   const filterClass = clsx(
@@ -64,24 +64,12 @@ function Explore() {
         </button>
       </div>
 
-      <div className="gigs-container">
-        {gigList}
-      </div>
+      {loadingAllGigs ? <Spinner size={50} color={darkMode ? "#ffffff" : "#333333"} /> :
+        <div className="gigs-container">
+          {gigList}
+        </div>}
     </main>
   )
 }
 
 export default Explore
-
-{/* <div className="new-gig">
-        <div className="gig-body">
-          <div className="client-info">
-            <img className="explore-client-img" src={userIcon} />
-          </div>
-          <div className="gig-info">
-            <p className="gig-name bold">Create a UI design</p>
-            <p className="explore-p">$40</p>
-          </div>
-        </div>
-        <button className="apply-gig-button bold">Apply</button>
-      </div> */}
