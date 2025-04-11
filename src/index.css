@@ -97,6 +97,7 @@ main {
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
+  background-color: #161616;
   color: whitesmoke;
   z-index: 0;
   display: flex;

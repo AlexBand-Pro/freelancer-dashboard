@@ -69,19 +69,6 @@ export async function fetchUserClients() {
   return filteredClients
 }
 
-// export async function fetchClients() {
-//   const clientsQuery = await getDocs(collection(db, "clients"));
-//   return clientsQuery.docs.map((doc) => ({
-//     ...doc.data(),
-//     id: doc.id
-//   }));
-// }
-
-// export async function fetchUsers() {
-//   const usersQuery = await getDocs(collection(db, "users"));
-//   return usersQuery.docs.map((doc) => doc.data().userName);
-// }
-
 const gigsQuery = await getDocs(collection(db, "gigs"));
 export const gigs = gigsQuery.docs.map((doc) => {
   const gigs = doc.data()
