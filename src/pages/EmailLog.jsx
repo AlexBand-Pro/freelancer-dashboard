@@ -34,7 +34,7 @@ function EmailLog() {
       {error ? <p className="red-error">{error}</p> : null}
       <form>
         <input className={`log-in-input ${darkMode ? "dark" : ""}`} ref={emailRef} name="email" id="email" type="email" placeholder="Email" />
-        <input className={`log-in-input ${darkMode ? "dark" : ""}`} ref={passwordRef} name="password" id="password" type="password" placeholder="First password" />
+        <input className={`log-in-input ${darkMode ? "dark" : ""}`} ref={passwordRef} name="password" id="password" type="password" placeholder="Password" />
         {hasAccount
           ? <button className={`log-in-input ${darkMode ? "dark" : ""}`} disabled={reqStatus === "submitting"} onClick={logIn}>Log in</button>
           : <button className={`log-in-input ${darkMode ? "dark" : ""}`} disabled={reqStatus === "submitting"} onClick={createAccount}>Create Account</button>}
