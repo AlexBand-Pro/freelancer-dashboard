@@ -1,12 +1,26 @@
-# React + Vite
+# Freelancer Dashboard
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A responsive, React-powered dashboard designed for freelancers to manage their gigs, clients, and payments — all from one centralized hub.
 
-Currently, two official plugins are available:
+[![dashboard-project-img](https://github.com/user-attachments/assets/c3591e2d-0e97-440e-8c0f-849e26f81c8e)](https://kaleidoscopic-moonbeam-458705.netlify.app/)
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+---
 
-## Expanding the ESLint configuration
+## 🚀 Features
 
-If you are developing a production application, we recommend using TypeScript and enable type-aware lint rules. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+- **Authentication** – Secure login and signup powered by Firebase  
+- **Real-time Data** – Sync gigs, clients, and payments instantly  
+- **Dynamic Routing** – Smooth navigation using React Router  
+- **State Management** – React Hooks for clean and efficient state handling  
+- **Responsive Design** – Built with Flexbox and CSS Grid for a seamless experience across devices  
+- **Intuitive Layout** – Sidebar navigation + flexible main content area  
+
+---
+
+## 🛠️ Tech Stack
+
+- **React** – UI framework  
+- **React Router** – Client-side routing  
+- **Firebase** – Authentication & real-time database  
+- **React Hooks** – State and lifecycle management  
+- **CSS (Flexbox & Grid)** – Modern, responsive design  
