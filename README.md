@@ -9,7 +9,6 @@ A responsive, React-powered dashboard designed for freelancers to manage their g
 ## 🚀 Features
 
 - **Authentication** – Secure login and signup powered by Firebase  
-- **Real-time Data** – Sync gigs, clients, and payments instantly  
 - **Dynamic Routing** – Smooth navigation using React Router  
 - **State Management** – React Hooks for clean and efficient state handling  
 - **Responsive Design** – Built with Flexbox and CSS Grid for a seamless experience across devices  
